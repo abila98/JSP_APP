@@ -1,0 +1,44 @@
+<project name="JSP_WAR" basedir=".." default="clean">
+ 
+    <!-- project-specific variables -->
+	<property name="project.dir" value="JSP_APP/WebContent" />
+    <property name="project.dir.name" value="jsp_app" />
+    <property name="package.name" value="${project.dir.name}.war" /> 
+    <property name="project.dir.web-inf" value="${project.dir}/WEB-INF" />
+    <property name="project.dir.meta-inf" value="${project.dir}/META-INF" />
+    <property name="war.dir" value="JSP_APP/war" />
+	
+
+	<!-- MAKE DEST -->
+    <target name="makedir">
+	<echo>=== MAKE DEST DIRECTORY ===</echo>
+        <mkdir dir="${war.dir}" />
+    </target>
+
+	
+    <!-- PACKAGE WAR -->
+    <target name="package" depends="makedir">
+      <echo>=== PACKAGE WAR AND STORE IN DEST DIRECTORY===</echo>
+      <!-- the ant war task. with all resources in place, create the war file -->
+      <war destfile="${war.dir}/${package.name}" webxml="${project.dir.web-inf}/web.xml" basedir="${project.dir}">
+      </war>
+    </target>
+      
+	  
+    <!-- DEPLOY ON TOMCAT -->
+    <target name="deploy" depends="package">
+      <echo>=== DEPLOY WAR IN WEBAPPS FOLDER ===</echo>
+      <copy file="${war.dir}/${package.name}" tofile="${webapp.dir}/${package.name}" overwrite="true" /> 
+    </target>
+ 
+ 
+     <!-- CLEAN DEST -->
+	<target name="clean" depends="deploy">
+	<echo>=== CLEAN DEST DIRECTORY ===</echo>
+        <delete includeEmptyDirs="true">
+            <fileset dir="${war.dir}"/>
+        </delete>   
+    </target>
+ 
+ 
+</project>
