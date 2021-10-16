@@ -6,7 +6,7 @@
     <property name="package.name" value="${project.dir.name}.war" /> 
     <property name="project.dir.web-inf" value="${project.dir}/WEB-INF" />
     <property name="project.dir.meta-inf" value="${project.dir}/META-INF" />
-    <property name="war.dir" value="JSP_APP/war" />
+    <property name="war.dir" value="/nps/apps/war" />
 	
 
 	<!-- MAKE DEST -->
@@ -25,20 +25,11 @@
     </target>
       
 	  
-    <!-- DEPLOY ON TOMCAT -->
-    <target name="deploy" depends="package">
-      <echo>=== DEPLOY WAR IN WEBAPPS FOLDER ===</echo>
-      <copy file="${war.dir}/${package.name}" tofile="${webapp.dir}/${package.name}" overwrite="true" /> 
+     <!-- Store artifact-->
+    <target name="war" depends="package">
+      <echo>=== STORE war FOLDER ===</echo>
+      <copy file="${war.dir}/${package.name}" tofile="${war.dir}/${package.name}" overwrite="true" />
     </target>
- 
- 
-     <!-- CLEAN DEST -->
-	<target name="clean" depends="deploy">
-	<echo>=== CLEAN DEST DIRECTORY ===</echo>
-        <delete includeEmptyDirs="true">
-            <fileset dir="${war.dir}"/>
-        </delete>   
-    </target>
- 
+
  
 </project>
