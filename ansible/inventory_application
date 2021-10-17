@@ -1,0 +1,9 @@
+[application]
+10.0.10.70
+
+
+
+
+[application:vars]
+ansible_ssh_private_key_file = ~/aws-key.pem
+

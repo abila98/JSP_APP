@@ -1,0 +1,21 @@
+---
+- hosts: application
+  gather_facts: False
+  remote_user: ec2-user
+  become: yes
+
+  tasks:
+    - name: ping
+      ping: 
+    
+    - name: stop tomcat service 
+      service: name=tomcat8080 state=stopped 
+    
+    - name: copy war to tomcat
+      copy:
+        src: /nps/apps/war/jsp_app.war
+        dest: /nps/apps/tomcat8080/webapps/
+        #remote_src: true
+    
+    - name: start tomcat service
+      service: name=tomcat8080 state=started
