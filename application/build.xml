@@ -1,7 +1,7 @@
 <project name="JSP_WAR" basedir=".." default="clean">
 
     <!-- project-specific variables -->
-        <property name="project.dir" value="JSP_APP/application/WebContent" />
+        <property name="project.dir" value="application/WebContent" />
     <property name="project.dir.name" value="jsp_app" />
     <property name="package.name" value="${project.dir.name}.war" />
     <property name="project.dir.web-inf" value="${project.dir}/WEB-INF" />
