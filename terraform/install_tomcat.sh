@@ -7,8 +7,8 @@ cd /nps/apps
 wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.54/bin/apache-tomcat-9.0.54.zip --no-check-certificate
 unzip apache-tomcat-9.0.54.zip -d /nps/apps/
 ln -s /nps/apps/apache-tomcat-9.0.54 tomcat8080
-sudo chown -R ec2-user:ec2-user /nps/apps/tomcat8080
-chmod 755 tomcat8080/bin/*.sh
+sudo chown -R ec2-user:ec2-user /nps/
+sudo chmod 755 tomcat8080/bin/*.sh
 
 sudo cat > "/usr/lib/systemd/system/tomcat8080.service" <<EOL
 [Unit]
