@@ -187,7 +187,8 @@ resource "aws_instance" "jenkins-master"{
 
                 ## Check the Docker service.
                 systemctl status docker
-                docker run -u root --rm -d -p 8080:8080 -p 50000:50000 --name myjenkin -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkinsci/blueocean
+                docker run -u root -d -p 8080:8080 -p 50000:50000 --name myjenkin -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock --restart unless-stopped jenkinsci/blueocean
+                ##docker run -u root --rm -d -p 8080:8080 -p 50000:50000 --name myjenkin -v jenkins-data:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock jenkinsci/blueocean
                 EOF
 
   tags = {
